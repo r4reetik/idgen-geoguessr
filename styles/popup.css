@@ -1,0 +1,13 @@
+body {
+    width: 320px;
+    /* background-color: grey; */
+}
+
+.selected {
+    background-color: rgb(120, 255, 130);
+    border-color: green;
+}
+
+.card:hover {
+    cursor: pointer;
+}
