@@ -27,11 +27,13 @@ const doVerification = () => {
                     .getElementsByClassName("text-input")[1]
                     .dispatchEvent(new Event("input"));
 
-                // document
-                //     .querySelector(
-                //         "#__next > div > main > form > div > button > span.button__label"
-                //     )
-                //     .click();
+                setTimeout(() => {
+                    document
+                        .querySelector(
+                            "#__next > div > main > form > div > button > span.button__label"
+                        )
+                        .click();
+                }, 100);
             });
 
             clearInterval(clickPassword);
