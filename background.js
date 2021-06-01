@@ -181,13 +181,13 @@ chrome.runtime.onMessage.addListener((req, sen, res) => {
     } else if (req.message === "doneOpenMap") {
         res({ message: "Success" });
 
-        // chrome.storage.local.get(["ggTabID"], (result) => {
-        //     chrome.tabs.sendMessage(result.ggTabID, { message: "startMap" }, (response) => {
-        //         if (response.message != "Success") {
-        //             console.log("Something went wrong!!!");
-        //         }
-        //     });
-        // });
+        chrome.storage.local.get(["ggTabID"], (result) => {
+            chrome.tabs.sendMessage(result.ggTabID, { message: "startMap" }, (response) => {
+                if (response.message != "Success") {
+                    console.log("Something went wrong!!!");
+                }
+            });
+        });
 
         return true;
     }

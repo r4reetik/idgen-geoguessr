@@ -1,10 +1,12 @@
 const doStartMap = () => {
-    document
-        .querySelector(
-            "#__next > div > main > div > div > div.map-block > div.map-block__actions > button > span.button__label"
-        )
-        .click();
-
+    setTimeout(() => {
+        document
+            .querySelector(
+                "#__next > div > main > div > div > div.map-block > div.map-block__actions > button > span.button__label"
+            )
+            .click();
+    }, 100);
+    
     const clickPlayModal = setInterval(() => {
         if (
             document.querySelector(
