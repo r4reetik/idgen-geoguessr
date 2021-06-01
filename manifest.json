@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "IDgen GeoGuessr",
     "description": "This chrome extension will generate new ID for geoguessr game automatically.",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "icons": {
         "8": "/assets/icon/icon_8.png",
         "16": "/assets/icon/icon_16.png",
@@ -28,7 +28,40 @@
             "512": "/assets/icon/icon_512.png"
         }
     },
-    "permissions": ["tabs", "storage"],
+    "permissions": ["activeTab", "tabs", "storage", "scripting"],
     "optional_permissions": [],
-    "host_permissions": ["*://*.geoguessr.com/*", "*://*.temp-mail.org/en/*"]
+    "host_permissions": ["*://*.geoguessr.com/*", "*://*.temp-mail.org/en/*"],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            
+            "matches": ["*://*.geoguessr.com/maps/*"],
+            "js": ["/scripts/mygeoguessrmap.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["*://*.geoguessr.com/profile/set-password/*"],
+            "js": ["/scripts/mygeoguessrdone.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["*://*.geoguessr.com/*"],
+            "exclude_matches": ["*://*.geoguessr.com/profile/set-password/*"],
+            "js": ["/scripts/mygeoguessr.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["*://*.temp-mail.org/en/view/*"],
+            "js": ["/scripts/mytempmaildone.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": ["*://*.temp-mail.org/en/"],
+            "exclude_matches": ["*://*.temp-mail.org/en/view/*"],
+            "js": ["/scripts/mytempmail.js"],
+            "run_at": "document_end"
+        }
+    ]
 }
